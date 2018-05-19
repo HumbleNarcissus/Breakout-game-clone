@@ -1,10 +1,13 @@
 import 'phaser';
+import BootState from './States/BootState';
+import TitleScene from './States/TitleScene';
+import PlayState from './States/PlayState';
 
 let config = {
     type: Phaser.WEBGL,
     parent: 'content',
     width: 400,
-    height: 240,
+    height: 450,
     scaleMode: 0,
     physics: {
         default: 'arcade',
@@ -13,26 +16,11 @@ let config = {
             debug: true
         }
     },
-    scene: {
-        preload: preload,
-        create: create,
-        update: update
-    }
+    scene: [
+        BootState,
+        TitleScene,
+        PlayState
+    ]
 };
 
 let game = new Phaser.Game(config);
-
-function preload ()
-{
-    console.log("PRELOAD");
-}
-
-function create ()
-{
-    console.log("CREATE");
-}
-
-function update ()
-{
-    console.log("UPDATE");
-}
