@@ -8,6 +8,7 @@ class BootState extends Phaser.Scene {
     preload() {
         this.load.image('player', 'assets/images/player.png');
         this.load.image('brick', 'assets/images/brick.png');
+        this.load.image('ball', 'assets/images/ball.png');
     }
 
     create() {

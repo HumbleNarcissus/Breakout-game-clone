@@ -1,5 +1,6 @@
 import Player from './Sprites/Player';
 import Brick from './Sprites/Brick';
+import Ball from './Sprites/Ball';
 
 class PlayState extends Phaser.Scene {
     constructor() {
@@ -23,7 +24,7 @@ class PlayState extends Phaser.Scene {
                 let brick = new Brick({
                     scene: this,
                     key: 'brick',
-                    x: 80 + i * 60,
+                    x: 50 + i * 60,
                     y: 50 + j * 35
                 })
 
@@ -31,11 +32,31 @@ class PlayState extends Phaser.Scene {
                 this.bricks.add(brick);
             }
         }
+
+        this.ball = new Ball({
+            scene: this,
+            key: 'ball',
+            x: this.sys.game.config.width/2,
+            y: this.sys.game.config.height - 100
+        });
     }
 
     update() {
+        //collisons
+        this.physics.add.collider(this.player, this.ball);
+        this.physics.add.collider(this.ball, this.bricks, this.hit, null, this);
+
         //move player
         this.player.move();
+
+        //end game if ball is below player
+        if(this.ball.y > this.player.y + 20) {
+            this.scene.start('PlayState');
+        }
+    }
+
+    hit(ball, brick) {
+        brick.destroy();
     }
 
 }

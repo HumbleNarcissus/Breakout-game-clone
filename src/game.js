@@ -6,14 +6,14 @@ import PlayState from './States/PlayState';
 let config = {
     type: Phaser.WEBGL,
     parent: 'content',
-    width: 400,
+    width: 350,
     height: 450,
     scaleMode: 0,
     physics: {
         default: 'arcade',
         arcade: {
             gravity: { y: 800 },
-            debug: true
+            debug: false
         }
     },
     scene: [
